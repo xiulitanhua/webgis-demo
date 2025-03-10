@@ -1,0 +1,1380 @@
+/* 基础重置 */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 全局字体和颜色 */
+body, h1, h2, h3, h4, h5, h6, p, a, span, div, label, input, select, button, textarea {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #000; /* 黑色字体 */
+}
+
+/* 导航系统 */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(135deg, #085fb6 0%, #001a35 100%); /* 深蓝色背景 */
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  box-shadow: 0 2px 12px rgba(0, 31, 63, 0.2);
+  z-index: 1000;
+  animation: navSlideIn 0.4s ease-out;
+  border-bottom: 1px solid rgba(217, 217, 217, 0.3);
+  border-radius: 0 0 8px 8px;
+}
+
+.nav-brand {
+  color: #000; /* 黑色字体 */
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-item {
+  color: #000; /* 黑色字体 */
+  margin-right: 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #00bfff;
+}
+
+.nav-item.active {
+  border-bottom: 2px solid #00bfff;
+}
+
+/* 路径规划 */
+.route-planning {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.route-type {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.route-input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(217, 217, 217, 0.3);
+  background: #fff;
+  color: #000;
+}
+
+.route-button {
+  padding: 8px 12px;
+  background: #085fb6;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.route-button:hover {
+  background: #003a75;
+}
+
+/* 搜索系统 */
+.search-container {
+  margin-left: auto;
+  position: relative;
+  width: 360px;
+  max-width: 40%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 48px 12px 20px;
+  border: none;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000; /* 黑色字体 */
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #00bfff,
+              0 4px 12px rgba(16, 142, 233, 0.1);
+  background: white;
+}
+
+.search-input::placeholder {
+  color: rgba(217, 217, 217, 0.3);
+  opacity: 0.8;
+}
+
+.search-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4682b4;
+  pointer-events: none;
+}
+
+/* 地图容器 */
+.map-container {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: row-reverse;
+  background: #f0f8ff;
+  overflow: hidden;
+}
+
+.map-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 48px rgba(0, 0, 0, 0.08); /* 添加内阴影 */
+}
+
+.ol-map {
+  flex: 1;
+  min-height: 400px;
+  background: #f0f8ff;
+  position: relative;
+  z-index: 0;
+}
+
+/* 控制面板 */
+.control-panel {
+  width: 320px;
+  height: 100vh;
+  padding: 16px;
+  background: linear-gradient(135deg, #136fca 0%, #001a35 100%); /* 深蓝色背景 */
+  box-shadow: -2px 0 12px rgba(16, 142, 233, 0.1);
+  overflow-y: auto;
+  position: relative;
+  z-index: 100;
+  border-left: 1px solid rgba(217, 217, 217, 0.3);
+  border-radius: 8px 0 0 8px;
+  transition: transform 0.3s ease;
+  overscroll-behavior: contain;
+  color: #000; /* 黑色字体 */
+  
+  /* 子元素继承体系 */
+  h1, h2, h3, h4, h5, h6 {
+    color: #000; /* 黑色字体 */
+  }
+
+  label, .form-label {
+    color: rgba(0, 0, 0, 0.8); /* 黑色字体 */
+  }
+
+  input, select, textarea {
+    color: inherit;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.control-panel h3,
+.control-panel h4,
+.control-panel label,
+.control-panel input,
+.control-panel select,
+.control-panel button {
+  color: #000 !important; /* 黑色字体，提升优先级 */
+}
+
+.control-panel.hidden {
+  transform: translateX(-100%);
+}
+
+.control-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.control-panel::-webkit-scrollbar-thumb {
+  background: #4682b4;
+  border-radius: 3px;
+}
+
+.control-panel .form-input,
+.control-panel .form-select {
+  background: rgba(255, 255, 255, 0.1); /* 半透明白色背景 */
+  color: #000 !important; /* 黑色字体，临时解决方案 */
+  border-color: rgba(255, 255, 255, 0.3); /* 调整边框颜色 */
+}
+
+.control-panel .form-input:focus,
+.control-panel .form-select:focus {
+  background: rgba(255, 255, 255, 0.2); /* 聚焦时稍亮 */
+  border-color: #00bfff;
+}
+
+.control-panel input,
+.control-panel select,
+.control-panel button {
+  color: inherit; /* 显式继承父级颜色 */
+}
+
+/* 表单控件 */
+.form-input,
+.form-select {
+  padding: 8px 12px;
+  border: 1px solid rgba(217, 217, 217, 0.3);
+  border-radius: 4px;
+  width: 100%;
+  background: #f0f8ff; /* 浅蓝色背景 */
+  color: #000; /* 黑色字体 */
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: #00bfff;
+  outline: none;
+  box-shadow: 0 0 0 2px #00bfff;
+  background: white;
+}
+
+/* 图层控制 */
+.layer-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background:  #1a62aa; /* 深蓝色背景 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.layer-item:hover {
+  background:  #1a62aa;
+  transform: translateX(4px);
+}
+
+.layer-item.layer-error {
+  border-left: 3px solid #ff4d4f;
+  background: rgba(245, 34, 45, 0.08);
+  animation: error-pulse 1.5s infinite;
+}
+
+.layer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #4682b4;
+  border-radius: 4px;
+  position: relative;
+}
+
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+input:checked ~ .checkmark {
+  background: #4682b4;
+  border-color: #4682b4;
+}
+
+input:checked ~ .checkmark::after {
+  display: block;
+}
+
+.loading-dot {
+  width: 8px;
+  height: 8px;
+  background: #4682b4;
+  border-radius: 50%;
+  animation: pulse 1.2s infinite;
+}
+
+/* 要素属性 */
+.feature-info {
+  margin-top: 20px;
+  padding: 16px;
+  background: #3b3c3d;
+  border-radius: 8px;
+  border: 1px solid rgba(217, 217, 217, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.property-grid {
+  display: grid;
+  grid-template-columns: minmax(120px, auto) 1fr;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.property-key {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8); /* 使用中间色 */
+}
+
+.geometry-details {
+  border: 1px solid rgba(217, 217, 217, 0.3);
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.geometry-summary {
+  padding: 8px;
+  cursor: pointer;
+  background: #f0f8ff;
+  list-style: none;
+}
+
+.geometry-summary::-webkit-details-marker {
+  display: none;
+}
+
+.geometry-pre {
+  padding: 12px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 0 0 4px 4px;
+  margin: 0;
+  max-height: 200px;
+  overflow: auto;
+}
+
+/* 分析工具 */
+.analysis-tools {
+  margin-top: 20px;
+  padding: 16px;
+  background:  #1a62aa; /* 深蓝色背景 */
+  border-radius: 8px;
+  border: 1px solid rgba(217, 217, 217, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tool-group {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(217, 217, 217, 0.3);
+}
+
+.tool-group:last-child {
+  border-bottom: none;
+}
+
+.measure-result {
+  padding: 8px;
+  margin-top: 8px;
+  background: rgba(135, 208, 104, 0.1);
+  border-left: 3px solid #00bfff;
+  border-radius: 4px;
+  color: #000; /* 黑色字体 */
+}
+
+.measure-result {
+  background: rgba(255, 255, 255, 0.9);
+  border-left: 4px solid #00bfff; /* 使用具体颜色值替代变量 */
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 按钮系统 */
+.btn-primary,
+.btn-draw,
+.btn-measure,
+.btn-buffer
+ {
+  padding: 10px 16px;
+  margin: 6px;
+  background: rgba(245, 244, 241, 0.8); /* 浅灰色背景 */
+  color: #fff; /* 浅色字体 */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-transition: all 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-draw:hover,
+.btn-measure:hover,
+.btn-buffer:hover {
+  background: rgba(204, 203, 200, 0.9); /* 浅灰色背景 */
+  box-shadow: 0 2px 8px rgba(16, 142, 233, 0.2);
+}
+
+.btn-primary:active,
+.btn-draw:active,
+.btn-measure:active,
+.btn-buffer:active
+ {
+  transform: scale(0.96);
+}
+
+.btn-primary:focus,
+.btn-draw:focus,
+.btn-measure:focus,
+.btn-buffer:focus
+ {
+  outline: 2px solid #71c4ef;
+  outline-offset: 2px;
+}
+
+/* 绘图按钮样式 */
+
+/* 测量按钮样式 */
+
+/* 缓冲区按钮样式 */
+
+/* 查询按钮样式 */
+
+
+/* 通知系统容器 */
+.notification-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  max-width: 400px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 加载指示器 */
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 3000;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #4682b4;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+/* 基础通知样式 */
+.notification {
+  position: relative;
+  padding: 16px 48px 16px 24px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0, 31, 63, 0.15);
+  opacity: 0;
+  transform: translateX(120%);
+  animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.notification.out {
+  animation: slideOut 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+/* 通知类型配色 */
+.notification-success {
+  border-color: #52c41a;
+  background: linear-gradient(135deg, rgba(82, 196, 26, 0.08), rgba(255, 255, 255, 0.95));
+}
+
+.notification-error {
+  border-color: #ff4d4f;
+  background: linear-gradient(135deg, rgba(255, 77, 79, 0.08), rgba(255, 255, 255, 0.95));
+}
+
+.notification-warning {
+  border-color: #faad14;
+  background: linear-gradient(135deg, rgba(250, 173, 20, 0.08), rgba(255, 255, 255, 0.95));
+}
+
+.notification-info {
+  border-color: #1890ff;
+  background: linear-gradient(135deg, rgba(24, 144, 255, 0.08), rgba(255, 255, 255, 0.95));
+}
+
+/* 通知图标 */
+.notification-icon {
+  position: absolute;
+  left: -12px;
+  top: -12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notification-success .notification-icon {
+  background: #52c41a;
+}
+
+.notification-error .notification-icon {
+  background: #ff4d4f;
+}
+
+.notification-warning .notification-icon {
+  background: #faad14;
+}
+
+.notification-info .notification-icon {
+  background: #1890ff;
+}
+
+/* 通知内容 */
+.notification-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.notification-content {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* 关闭按钮 */
+.notification-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.notification-close::before,
+.notification-close::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.5);
+  left: 50%;
+  top: 50%;
+}
+
+.notification-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.notification-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.notification-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/* 进度条 */
+.notification-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.notification-progress::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: currentColor;
+  animation: progressBar 5s linear forwards;
+}
+
+
+
+/* 动画效果 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}
+
+@keyframes progressBar {
+  from { width: 100%; }
+  to { width: 0; }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .notification-container {
+    right: 10px;
+    left: 10px;
+    width: auto;
+    top: 70px;
+  }
+
+  .notification {
+    padding: 12px 40px 12px 20px;
+  }
+
+  .notification-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 修复后的样式 */
+.property-grid {
+  max-height: 90vh;
+  overflow-y: auto;
+  /* 添加滚动条防止内容溢出 */
+}
+
+.property-grid {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.5rem;
+}
+
+.ol-map {
+  height: calc(100vh - 60px); /* 动态调整高度 */
+  min-height: 300px; /* 保证最小高度 */
+}
+
+.btn-primary {
+  padding: 8px 12px;
+  font-size: 0.9em;
+}
+
+.analysis-tools .tool-group {
+  padding: 12px;
+}
+
+.form-input, .form-select {
+  font-size: 14px;
+}
+
+
+/* 动画系统 */
+@keyframes navSlideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, 100%); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+@keyframes error-pulse {
+  0%, 100% { border-color: #ff4d4f; }
+  50% { border-color: #ff7875; }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 路径步骤面板 */
+.route-steps-panel {
+  margin-top: 15px;
+  padding: 10px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.clear-route-btn {
+  padding: 4px 8px;
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.clear-route-btn:hover {
+  background: #ff7875;
+}
+
+.steps-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.step-item {
+  display: flex;
+  padding: 8px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.step-item:hover {
+  background-color: #f5f5f5;
+}
+
+.step-item.active {
+  background-color: #e6f7ff;
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  background: #1890ff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  font-size: 12px;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-guide {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.step-coords {
+  font-size: 12px;
+  color: #999;
+}
+
+.route-steps-panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 300px;
+  max-height: calc(100vh - 180px);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.route-steps-panel.minimized {
+  width: auto;
+  height: auto;
+  max-height: unset;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
+  border-radius: 8px 8px 0 0;
+  flex-shrink: 0;
+  position: relative;  /* 添加相对定位 */
+}
+
+.panel-header h3 {
+  margin: 0 0 12px 0;
+  padding-right: 80px;  /* 为右上角的按钮预留空间 */
+  font-size: 16px;
+  color: #333;
+}
+
+.panel-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-shrink: 0;
+  position: absolute;  /* 添加绝对定位 */
+  top: 12px;          /* 距离顶部的距离 */
+  right: 12px;        /* 距离右边的距离 */
+}
+
+.minimize-btn {
+  padding: 6px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #333;  /* 添加黑色字体颜色 */
+  font-size: 14px; /* 设置字体大小 */
+  font-weight: normal; /* 设置字体粗细 */
+  padding: 4px 8px;   /* 调整padding使按钮更小巧 */
+}
+
+.minimize-btn:hover {
+  background: #f5f5f5;
+  border-color: #d9d9d9;
+  color: #000;  /* 悬停时的字体颜色 */
+}
+
+.clear-route-btn {
+  padding: 4px 8px;
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.clear-route-btn:hover {
+  background: #ff7875;
+}
+
+.steps-container {
+  max-height: calc(100vh - 240px);
+  overflow-y: auto;
+  padding: 8px;
+  flex: 1;
+  max-height: calc(100vh - 300px);
+  scrollbar-width: thin;
+  scrollbar-color: #d9d9d9 #f5f5f5;
+}
+
+.steps-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.steps-container::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
+.steps-container::-webkit-scrollbar-thumb {
+  background: #d9d9d9;
+  border-radius: 3px;
+}
+
+.steps-container::-webkit-scrollbar-thumb:hover {
+  background: #bfbfbf;
+}
+
+.step-item {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-items: flex-start;
+}
+
+.step-item:hover {
+  background-color: #f6f6f6;
+}
+
+.step-item.active {
+  background-color: #e6f7ff;
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  background: #1890ff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  font-size: 12px;
+  flex-shrink: 0;
+  background-color: #1890ff;
+}
+
+.step-content {
+  flex: 1;
+  min-width: 0;
+  padding: 8px;
+}
+
+.step-guide {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.step-coords {
+  font-size: 12px;
+  color: #999;
+  word-break: break-all;
+}
+
+/* 路径图例 */
+.route-legend {
+  margin: 8px 0;
+  font-size: 12px;
+  padding: 8px;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+  font-size: 12px;
+}
+
+.color-block {
+  width: 16px;
+  height: 4px;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+/* 总距离显示样式 */
+.route-total-distance {
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.distance-icon {
+  font-size: 16px;
+}
+
+.distance-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #52c41a;
+}
+
+/* 路径规划面板样式 */
+.route-steps-panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  max-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.panel-header h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.route-total-distance {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px;
+  background: #f6f6f6;
+  border-radius: 4px;
+}
+
+.distance-icon {
+  margin-right: 8px;
+}
+
+.route-legend {
+  margin-top: 12px;
+}
+
+.legend-group {
+  margin-bottom: 16px;
+}
+
+.legend-group h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.color-block {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.panel-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.minimize-btn,
+.clear-route-btn {
+  padding: 6px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.minimize-btn:hover,
+.clear-route-btn:hover {
+  background: #f5f5f5;
+}
+
+.steps-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.step-item {
+  display: flex;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.step-item:hover {
+  background: #f5f5f5;
+}
+
+.step-item.active {
+  background: #e6f7ff;
+  border-left: 3px solid #1890ff;
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1890ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-guide {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* 路径规划步骤面板样式 */
+.route-steps-panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 360px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  max-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+/* 面板头部样式 */
+.panel-header {
+  padding: 16px;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  padding-right: 80px;
+  width: calc(100% - 120px); /* 设置宽度，减去右侧按钮的空间 */
+  white-space: nowrap; /* 防止文本换行 */
+  overflow: hidden; /* 隐藏溢出内容 */
+  text-overflow: ellipsis; /* 显示省略号 */
+  line-height: 1.5;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* 修改面板标题样式 */
+.panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  padding-right: 80px;
+  width: calc(100% - 100px); /* 减少右侧空间 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* 总距离显示 */
+.route-total-distance {
+  margin: 12px 0;
+  padding: 10px;
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.distance-icon {
+  font-size: 16px;
+  margin-right: 8px;
+  color: #52c41a;
+}
+
+.distance-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #52c41a;
+}
+
+/* 步骤容器 */
+.steps-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  background: white;
+}
+
+/* 单个步骤样式 */
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: #fafafa;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.step-item:hover {
+  background: #f0f7ff;
+  transform: translateX(4px);
+}
+
+.step-item.active {
+  background: #e6f7ff;
+  border-color: #1890ff;
+}
+
+/* 步骤序号 */
+.step-number {
+  width: 28px;
+  height: 28px;
+  background: #1890ff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* 步骤内容 */
+.step-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.step-guide {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  word-wrap: break-word;
+  margin-bottom: 4px;
+}
+
+/* 控制按钮组 */
+.panel-controls {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+/* 调整控制按钮位置 */
+.panel-controls {
+  position: absolute;
+  top: 80%; /* 垂直居中 */
+  right: 12px;
+  transform: translateY(-50%); /* 垂直居中 */
+  display: flex;
+  gap: 8px;
+}
+
+.minimize-btn,
+.clear-route-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.minimize-btn {
+  background: white;
+  border: 1px solid #d9d9d9;
+  color: #333;
+}
+
+.clear-route-btn {
+  background: #ff4d4f;
+  border: none;
+  color: white;
+}
+
+.minimize-btn:hover {
+  background: #f5f5f5;
+}
+
+.clear-route-btn:hover {
+  background: #ff7875;
+}
+
+/* 添加最小化时的特殊样式 */
+.route-steps-panel.minimized .panel-header h3 {
+  width: auto; /* 自适应宽度 */
+  padding-right: 50px; /* 减少右侧padding */
+  margin-right: 8px; /* 添加右侧间距 */
+}
+
+/* 最小化时调整按钮样式 */
+.route-steps-panel.minimized .minimize-btn {
+  padding: 2px 6px; /* 减小按钮大小 */
+  font-size: 12px;
+}
